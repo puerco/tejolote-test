@@ -8,21 +8,20 @@ jobs:
     name: Build Test Project
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        repository: puerco/tejolote
-        path: tejolote-build
     - name: Install Go    
       uses: actions/setup-go@v3
       with:
         go-version: '1.19'
+    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+      with:
+        repository: puerco/tejolote
+        path: .ci/src/tejolote
     - run: |
         pwd
-        cd tejolote-build
-        go build -o ../tejolote cmd/tejolote/main.go
-        cd ..
-        rm -rfv tejolote-build
-    - uses: actions/checkout@v3
+        (cd .ci/src/tejolote; go build -o ../../tejolote cmd/tejolote/main.go)
+        rm -rfv .ci/src/tejolote
+    
     - run: |
         pwd
         ./tejolote
