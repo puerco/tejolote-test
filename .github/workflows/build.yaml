@@ -40,7 +40,7 @@ jobs:
     - name: Attest Run
       run: |
         pwd
-        ./.ci/tejolote attest github://puerco/tejolote-test/${{ github.run_id }} 
+        ./.ci/tejolote attest --sign github://puerco/tejolote-test/${{ github.run_id }} 
 
 
 
