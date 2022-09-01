@@ -17,9 +17,12 @@ jobs:
       with:
         go-version: '1.19'
     - run: |
+        pwd
         cd tejolote-build
         go build -o ../tejolote cmd/tejolote/main.go
         cd ..
         rm -rfv tejolote-build
     - uses: actions/checkout@v3
-    - run: ./tejolote
+    - run: |
+        pwd
+        ./tejolote
