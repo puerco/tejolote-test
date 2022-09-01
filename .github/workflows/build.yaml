@@ -42,7 +42,7 @@ jobs:
         COSIGN_EXPERIMENTAL: true
       run: |
         pwd
-        ./.ci/tejolote attest --sign github://puerco/tejolote-test/${{ github.run_id }} 
+        ./.ci/tejolote attest github://puerco/tejolote-test/${{ github.run_id }} 
 
 
 
