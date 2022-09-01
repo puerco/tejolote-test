@@ -38,6 +38,8 @@ jobs:
         (cd .ci/src/tejolote; go build -o ../../tejolote cmd/tejolote/main.go)
         rm -rfv .ci/src/tejolote
     - name: Attest Run
+      env:
+        COSIGN_EXPERIMENTAL: true
       run: |
         pwd
         ./.ci/tejolote attest --sign github://puerco/tejolote-test/${{ github.run_id }} 
