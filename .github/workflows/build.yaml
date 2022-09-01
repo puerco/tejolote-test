@@ -13,6 +13,21 @@ jobs:
       with:
         go-version: '1.19'
     - uses: actions/checkout@v3
+    - run: |
+        make
+    - name: Store Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: binary
+        path: hello
+  attest:
+    name: Attest Build Run
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Go    
+      uses: actions/setup-go@v3
+      with:
+        go-version: '1.19'
     - uses: actions/checkout@v3
       with:
         repository: puerco/tejolote
@@ -21,7 +36,10 @@ jobs:
         pwd
         (cd .ci/src/tejolote; go build -o ../../tejolote cmd/tejolote/main.go)
         rm -rfv .ci/src/tejolote
-    
     - run: |
         pwd
-        ./.ci/tejolote
+        ./.ci/tejolote attest github://puerco/tejolote-test/${{ github.run_id }} 
+
+
+
+
