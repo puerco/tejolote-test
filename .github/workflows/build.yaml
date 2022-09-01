@@ -11,12 +11,15 @@ jobs:
     - uses: actions/checkout@v3
       with:
         repository: puerco/tejolote
-        path: tejolote
+        path: tejolote-build
     - name: Install Go    
       uses: actions/setup-go@v3
       with:
         go-version: '1.19'
     - run: |
-        cd tejolote
-        go build -o tejolote cmd/tejolote/main.go
-        ./tejolote
+        cd tejolote-build
+        go build -o ../tejolote cmd/tejolote/main.go
+        cd ..
+        rm -rfv tejolote-build
+    - uses: actions/checkout@v3
+    - run: ./tejolote
