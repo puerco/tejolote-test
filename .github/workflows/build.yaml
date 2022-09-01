@@ -32,11 +32,13 @@ jobs:
       with:
         repository: puerco/tejolote
         path: .ci/src/tejolote
-    - run: |
+    - name: Build Tejolote Attester
+      run: |
         pwd
         (cd .ci/src/tejolote; go build -o ../../tejolote cmd/tejolote/main.go)
         rm -rfv .ci/src/tejolote
-    - run: |
+    - name: Attest Run
+      run: |
         pwd
         ./.ci/tejolote attest github://puerco/tejolote-test/${{ github.run_id }} 
 
