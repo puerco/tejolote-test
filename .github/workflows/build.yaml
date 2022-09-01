@@ -5,6 +5,9 @@ on:
 
 jobs:
   build:
+    name: Build Test Project
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v3
       with:
         repository: puerco/tejolote
