@@ -21,6 +21,7 @@ jobs:
         name: binary
         path: hello
   attest:
+    needs: build
     name: Attest Build Run
     runs-on: ubuntu-latest
     steps:
