@@ -12,7 +12,8 @@ steps:
     - 'topics'
     - 'publish'
     - 'projects/puerco-chainguard/topics/slsa'
-    - "--message='{\"project\": \"${PROJECT_ID}\", \"build\":\"${BUILD_ID}\"}'"
+    - '--message'
+    - "{\"project\": \"${PROJECT_ID}\", \"build\":\"${BUILD_ID}\"}"
 
 artifacts:
   objects:
