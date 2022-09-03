@@ -1,4 +1,4 @@
-
+name: Build SLSA Attestation
 on:
   workflow_run:
     types: [completed]
