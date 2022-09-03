@@ -16,4 +16,9 @@ steps:
       - |
         (cd .tejolote; go build -o ../tejolote cmd/tejolote/main.go)
         ./tejolote attest gcb://$PROJECT_ID/$BUILD_ID
+artifacts:
+  objects:
+    location: gs://$_BUCKET_NAME/test-build/${SHORT_SHA}/
+    paths:
+      - main
 
