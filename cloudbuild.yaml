@@ -11,4 +11,5 @@ artifacts:
     location: gs://puerco-chainguard-public/test-build/${SHORT_SHA}/
     paths:
       - hello
+      - README.md
 
