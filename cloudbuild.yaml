@@ -3,8 +3,9 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['clone', 'https://github.com/puerco/tejolote']
 - name: golang:1.19
+  entrypoint: /bin/bash
   args: 
       - -c
       - |
         ls -l
-        
+
