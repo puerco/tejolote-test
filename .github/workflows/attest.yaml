@@ -1,0 +1,32 @@
+
+on:
+  workflow_run:
+    types: [completed]
+    workflows: [Build]
+
+jobs:
+  attest:
+    needs: build
+    name: Attest Build Run
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Go    
+      uses: actions/setup-go@v3
+      with:
+        go-version: '1.19'
+    - uses: actions/checkout@v3
+      with:
+        repository: puerco/tejolote
+        path: .ci/src/tejolote
+    - name: Build Tejolote Attester
+      run: |
+        pwd
+        (cd .ci/src/tejolote; go build -o ../../tejolote cmd/tejolote/main.go)
+        rm -rfv .ci/src/tejolote
+    - name: Attest Run
+      env:
+        COSIGN_EXPERIMENTAL: true
+        GITHUB_TOKEN: ${{ secrets.WORKFLOWS_SECRET }}
+      run: |
+        pwd
+        ./.ci/tejolote attest github://puerco/tejolote-test/${{ github.event.workflow_run.id }} 
