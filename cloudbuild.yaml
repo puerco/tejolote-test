@@ -8,7 +8,6 @@ steps:
         make
 - name: 'gcr.io/cloud-builders/gcloud-slim'
   args:
-    - 'gcloud'
     - 'pubsub'
     - 'topics'
     - 'publish'
