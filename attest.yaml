@@ -1,0 +1,22 @@
+---
+steps:
+# TODO: Checkout
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/puerco/tejolote', '.tejolote']
+
+- name: golang:1.19
+  entrypoint: /bin/bash
+  args: 
+      - -c
+      - |
+        (cd .tejolote; go build -o ../tejolote cmd/tejolote/main.go)
+        ./tejolote attest gcb://${_PROJECT}/${_BUILD}
+
+substitutions:
+  # _GIT_TAG will be filled with a git-based tag of the form vYYYYMMDD-hash, and
+  # can be used as a substitution
+  _PROJECT: $(body.message.data.project)
+  _BUILD: $(body.message.data.build)
+
+
+
