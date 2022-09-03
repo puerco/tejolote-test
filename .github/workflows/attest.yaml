@@ -6,8 +6,7 @@ on:
 
 jobs:
   attest:
-    needs: build
-    name: Attest Build Run
+    name: Attest Workflow Run
     runs-on: ubuntu-latest
     steps:
     - name: Install Go    
