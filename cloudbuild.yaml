@@ -7,13 +7,13 @@ steps:
       - |
         make
 - name: 'gcr.io/cloud-builders/git'
-  args: ['clone', 'https://github.com/puerco/tejolote']
+  args: ['clone', 'https://github.com/puerco/tejolote', '.tejolote']
 
 - name: golang:1.19
   entrypoint: /bin/bash
   args: 
       - -c
       - |
-        (cd tejolote; go build -o ../tejolote cmd/tejolote/main.go)
+        (cd .tejolote; go build -o ../tejolote cmd/tejolote/main.go)
         ./tejolote attest gcb://$PROJECT_ID/$BUILD_ID
 
