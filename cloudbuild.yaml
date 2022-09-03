@@ -6,6 +6,15 @@ steps:
       - -c
       - |
         make
+- name: 'gcr.io/cloud-builders/gcloud-slim'
+  args:
+    - 'gcloud'
+    - 'pubsub'
+    - 'topics'
+    - 'publish'
+    - 'projects/puerco-chainguard/topics/slsa'
+    - "--message='{\"project\": \"$PROJECT_ID\", \"build\":\"$BUILD_ID\"}'"
+
 artifacts:
   objects:
     location: gs://puerco-chainguard-public/test-build/${SHORT_SHA}/
