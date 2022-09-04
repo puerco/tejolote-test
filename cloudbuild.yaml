@@ -13,7 +13,7 @@ steps:
     - 'publish'
     - 'projects/puerco-chainguard/topics/slsa'
     - '--message'
-    - "{\"project\": \"${PROJECT_ID}\", \"build\":\"${BUILD_ID}\", \"commit\": \"${COMMIT_SHA}\" }"
+    - "{\"spec\": \"gcb://${PROJECT_ID}/${BUILD_ID}\", \"vcs\": \"git+https://github.com/org/${REPO_NAME}#${COMMIT_SHA}\" }"
 
 artifacts:
   objects:
