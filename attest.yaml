@@ -14,8 +14,8 @@ steps:
 substitutions:
   # _GIT_TAG will be filled with a git-based tag of the form vYYYYMMDD-hash, and
   # can be used as a substitution
-  _SPECURL: $(body.message.data.spec-url)
-  _VCSURL: $(body.message.data.vcs-url)
+  _SPECURL: $(body.message.data.spec)
+  _VCSURL: $(body.message.data.vcs)
 
 
 
