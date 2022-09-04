@@ -10,7 +10,7 @@ steps:
       - -c
       - |
         (cd .tejolote; go build -o ../tejolote cmd/tejolote/main.go)
-        ./tejolote attest ${_SPECURL}
+        ./tejolote attest  --vcs-url='${_VCSURL}' ${_SPECURL}
 substitutions:
   # _GIT_TAG will be filled with a git-based tag of the form vYYYYMMDD-hash, and
   # can be used as a substitution
