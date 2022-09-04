@@ -1,19 +1,30 @@
 ---
 steps:
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/puerco/tejolote', '.tejolote']
+
+- name: golang:1.19
+  entrypoint: /bin/bash
+  args: 
+      - -c
+      - |
+        (cd .tejolote; go build -o ../tejolote cmd/tejolote/main.go)
+        ./tejolote start attestation --pubsub=puerco-chainguard/topics/slsa gcb://${PROJECT_ID}/${BUILD_ID}
+
 - name: golang:1.19
   entrypoint: /bin/bash
   args: 
       - -c
       - |
         make
-- name: 'gcr.io/cloud-builders/gcloud-slim'
-  args:
-    - 'pubsub'
-    - 'topics'
-    - 'publish'
-    - 'projects/puerco-chainguard/topics/slsa'
-    - '--message'
-    - "{\"spec\": \"gcb://${PROJECT_ID}/${BUILD_ID}\", \"vcs\": \"git+https://github.com/org/${REPO_NAME}#${COMMIT_SHA}\" }"
+#- name: 'gcr.io/cloud-builders/gcloud-slim'
+#  args:
+#    - 'pubsub'
+#    - 'topics'
+#    - 'publish'
+#    - 'projects/puerco-chainguard/topics/slsa'
+#    - '--message'
+#    - "{\"spec\": \"gcb://${PROJECT_ID}/${BUILD_ID}\", \"vcs\": \"git+https://github.com/org/${REPO_NAME}#${COMMIT_SHA}\" }"
 
 artifacts:
   objects:
