@@ -13,7 +13,7 @@ steps:
     - 'publish'
     - 'projects/puerco-chainguard/topics/slsa'
     - '--message'
-    - "{\"project\": \"${PROJECT_ID}\", \"build\":\"${BUILD_ID}\"}"
+    - "{\"project\": \"${PROJECT_ID}\", \"build\":\"${BUILD_ID}\", \"commit\": \"${COMMIT_SHA}\" }"
 
 artifacts:
   objects:
