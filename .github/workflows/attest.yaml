@@ -8,6 +8,9 @@ jobs:
   attest:
     name: Attest Workflow Run
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
     - name: Install Go    
       uses: actions/setup-go@v3
@@ -25,7 +28,7 @@ jobs:
     - name: Attest Run
       env:
         COSIGN_EXPERIMENTAL: true
-        GITHUB_TOKEN: ${{ secrets.WORKFLOWS_SECRET }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         pwd
         ./.ci/tejolote attest github://puerco/tejolote-test/${{ github.event.workflow_run.id }} 
