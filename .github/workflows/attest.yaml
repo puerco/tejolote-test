@@ -31,4 +31,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         pwd
-        ./.ci/tejolote attest github://puerco/tejolote-test/${{ github.event.workflow_run.id }} 
+        ./.ci/tejolote attest --sign github://puerco/tejolote-test/${{ github.event.workflow_run.id }} 
