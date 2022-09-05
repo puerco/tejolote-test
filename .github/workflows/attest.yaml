@@ -10,15 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
+    - uses: actions/checkout@v3
+      with:
+        repository: puerco/tejolote
+        path: .ci/src/tejolote
+    
     - name: Install Go    
       uses: actions/setup-go@v3
       with:
         go-version: '1.19'
         cache: true
-    - uses: actions/checkout@v3
-      with:
-        repository: puerco/tejolote
-        path: .ci/src/tejolote
+        cache-dependency-path: .ci/src/tejolote/go.sum
     - name: Build Tejolote Attester
       run: |
         pwd
