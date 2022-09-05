@@ -10,7 +10,10 @@ steps:
       - -c
       - |
         (cd .tejolote; go build -o ../tejolote cmd/tejolote/main.go)
-        ./tejolote attest --artifacts="${_ARTIFACTS}" --encoded-attestation="${_ATTESTATION}"" --encoded-snapshots="${_SNAPSHOTS}" ${_BUILD}
+        ./tejolote attest --artifacts="${_ARTIFACTS}" \
+                          --encoded-attestation="${_ATTESTATION}" \
+                          --encoded-snapshots="${_SNAPSHOTS}" \
+                          ${_BUILD}
 substitutions:
   # _GIT_TAG will be filled with a git-based tag of the form vYYYYMMDD-hash, and
   # can be used as a substitution
