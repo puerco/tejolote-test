@@ -8,15 +8,13 @@ jobs:
   attest:
     name: Attest Workflow Run
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-      actions: read
+    permissions: write-all
     steps:
     - name: Install Go    
       uses: actions/setup-go@v3
       with:
         go-version: '1.19'
+        cache: true
     - uses: actions/checkout@v3
       with:
         repository: puerco/tejolote
